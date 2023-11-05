@@ -16,10 +16,10 @@ jobs:
 
     steps:
       
-      - name: Checkout the actions folder
+      - name: Checkout the actions file
         uses: actions/checkout@v4
         with:
-          sparse-checkout: .github/actions
+          sparse-checkout: actions.yml
           sparse-checkout-cone-mode: false
 
       - name: Dowload mdPDFinator
@@ -33,7 +33,7 @@ jobs:
         run: curl ${{ vars.SAMPLE_MARKDOWN_URL }} -o sample.md
 
       - name: Add GTK
-        uses: ./.github/actions
+        uses: ./
 
       - name: Test it out
         run: ./mdPDFinator-Windows sample.md -o output-${{ matrix.os }}.pdf
@@ -55,11 +55,11 @@ jobs:
 
     steps:
 
-      - name: Checkout the actions folder
+      - name: Checkout the actions file
         uses: actions/checkout@v4
         with:
-          sparse-checkout: .github/actions
+          sparse-checkout: actions.yml
           sparse-checkout-cone-mode: false
 
       - name: Add GTK
-        uses: ./.github/actions
+        uses: ./
