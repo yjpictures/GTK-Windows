@@ -15,6 +15,11 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
+      
+      - name: Checkout the actions folder
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: .github/actions
 
       - name: Download mdPDFinator
         run: curl ${{ vars.MDPDFINATOR_RELEASE }} -o mdPDFinator.exe
@@ -25,14 +30,9 @@ jobs:
       - name: List all the files and folders
         run: tree /f
 
-      - name: Checkout the actions folder
-        uses: actions/checkout@v4
-        with:
-          sparse-checkout: .github/actions
-
       - name: Add GTK
         uses: ./.github/actions
-        
+
       - name: Test it out
         run: |
           mdPDFinator.exe sample.md
