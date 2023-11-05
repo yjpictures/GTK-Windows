@@ -8,8 +8,15 @@ runs:
 
   steps:
 
+    - name: Message for Non-Windows Users
+      if: runner.os != 'Windows'
+      shell: bash
+      run: echo "::warning title=GTK for Windows::GTK for Windows is not supported on any other OSs other than Windows"
+
+
     - name: Import GTK-for-Windows-Runtime-Environment-Installer
       uses: actions/checkout@v4
+      if: runner.os == 'Windows'
       with:
         repository: tschoonj/GTK-for-Windows-Runtime-Environment-Installer
         path: _tempGTK
@@ -18,6 +25,7 @@ runs:
         clean: false
     
     - name: Add to ENV
+      if: runner.os == 'Windows'
       shell: powershell
       run: |
         $Env:PATH += "$PWD\_tempGTK\gtk-nsis-pack\bin"
