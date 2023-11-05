@@ -22,10 +22,8 @@ jobs:
           sparse-checkout: .github/actions
           sparse-checkout-cone-mode: false
 
-      # - name: Download mdPDFinator
-      #   run: curl ${{ vars.MDPDFINATOR_RELEASE }} -o mdPDFinator.exe
-
-      - uses: robinraju/release-downloader@v1.8
+      - name: Dowload mdPDFinator
+        uses: robinraju/release-downloader@v1.8
         with:
           repository: yjpictures/mdPDFinator
           latest: true
@@ -34,14 +32,8 @@ jobs:
       - name: Download sample markdown
         run: curl ${{ vars.SAMPLE_MARKDOWN_URL }} -o sample.md
 
-      - name: List all the files and folders
-        run: tree /f
-
       - name: Add GTK
         uses: ./.github/actions
-
-      - name: List all the files and folders
-        run: ls
 
       - name: Test it out
         run: ./mdPDFinator-Windows sample.md
@@ -49,5 +41,5 @@ jobs:
       - name: Upload the converted PDF file
         uses: actions/upload-artifact@v3
         with:
-          name: test-output-${{ runner.os }}
-          path: output.pdf
+          name: test-output
+          path: output-${{ matrix.os }}.pdf
