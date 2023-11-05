@@ -23,7 +23,7 @@ jobs:
         run: curl ${{ vars.SAMPLE_MARKDOWN_URL }} -o sample.md
 
       - name: Add GTK
-        uses: ./.github/actions/action
+        uses: ./.github/actions
 
       - name: Test it out
         run: |
