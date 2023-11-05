@@ -61,3 +61,24 @@ jobs:
 
       - name: Add GTK
         uses: ./
+
+  test-inputs:
+
+    name: Test out the inputs
+    strategy:
+      fail-fast: false
+      matrix:
+        refs: [latest, 2022-01-04, MSY2-version, 2021-01-30, 27bc126]
+    runs-on: windows-latest
+
+    steps:
+
+      - name: Checkout the actions file
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: .
+
+      - name: Add GTK
+        uses: ./
+        with:
+          ref: ${{ matrix.refs }}
