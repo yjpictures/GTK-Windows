@@ -1,0 +1,36 @@
+name: Test GTK for Windows
+
+on:
+  push
+
+jobs:
+    
+  use-GTK:
+
+    name: Use GTK to convert MD to PDF
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-2019, windows-2022]
+    runs-on: ${{ matrix.os }}
+
+    steps:
+
+      - name: Download mdPDFinator
+        run: curl ${{ vars.MDPDFINATOR_RELEASE }} -o mdPDFinator.exe
+
+      - name: Download sample markdown
+        run: curl ${{ vars.SAMPLE_MARKDOWN_URL }} -o sample.md
+
+      - name: Add GTK
+        uses: GTK for Windows
+
+      - name: Test it out
+        run: |
+          ./mdPDFinator sample.md
+
+      - name: Upload the converted PDF file
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-output-${{ runner.os }}
+          path: output.pdf
