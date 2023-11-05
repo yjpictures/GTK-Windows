@@ -36,7 +36,7 @@ jobs:
         uses: ./.github/actions
 
       - name: Test it out
-        run: ./mdPDFinator-Windows sample.md
+        run: ./mdPDFinator-Windows sample.md -o output-${{ matrix.os }}.pdf
 
       - name: Upload the converted PDF file
         uses: actions/upload-artifact@v3
