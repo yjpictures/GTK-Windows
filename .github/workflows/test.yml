@@ -22,6 +22,8 @@ jobs:
           sparse-checkout: actions.yml
           sparse-checkout-cone-mode: false
 
+      - run: tree /f
+
       - name: Dowload mdPDFinator
         uses: robinraju/release-downloader@v1.8
         with:
@@ -60,6 +62,8 @@ jobs:
         with:
           sparse-checkout: actions.yml
           sparse-checkout-cone-mode: false
+      
+      - run: ls
 
       - name: Add GTK
         uses: ./
