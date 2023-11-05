@@ -68,7 +68,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        refs: [latest, 2022-01-04, MSY2-version, 2021-01-30, 27bc126]
+        releases: [2022-01-04, 2021-04-29, 2021-01-30, 2020-11-22, 2020-07-15, 2020-05-19]
     runs-on: windows-latest
 
     steps:
@@ -81,4 +81,4 @@ jobs:
       - name: Add GTK
         uses: ./
         with:
-          ref: ${{ matrix.refs }}
+          release: ${{ matrix.releases }}

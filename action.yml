@@ -4,8 +4,8 @@ description: 'This will add GTK+ in Windows Runtime Environment'
 
 inputs:
 
-  ref:
-    description: The branch, tag or SHA to use. Default is 2022-01-04.
+  release:
+    description: The release tag to use. Default is 2022-01-04.
     required: true
     default: 2022-01-04
 
@@ -28,7 +28,7 @@ runs:
       if: runner.os == 'Windows'
       with:
         repository: tschoonj/GTK-for-Windows-Runtime-Environment-Installer
-        ref: ${{ inputs.ref }}
+        ref: ${{ inputs.release }}
         path: _tempGTK
         sparse-checkout: gtk-nsis-pack
         sparse-checkout-cone-mode: false
