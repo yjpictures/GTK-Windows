@@ -61,38 +61,5 @@ jobs:
           sparse-checkout: .github/actions
           sparse-checkout-cone-mode: false
 
-      - name: Dowload mdPDFinator (Linux)
-        if: runner.os == 'Linux'
-        uses: robinraju/release-downloader@v1.8
-        with:
-          repository: yjpictures/mdPDFinator
-          latest: true
-          fileName: mdPDFinator-Linux
-      
-      - name: Dowload mdPDFinator (macOS)
-        if: runner.os == 'macOS'
-        uses: robinraju/release-downloader@v1.8
-        with:
-          repository: yjpictures/mdPDFinator
-          latest: true
-          fileName: mdPDFinator-macOS
-
-      - name: Rename the file and make it execuatable
-        run: | 
-          mv mdPDFinator* mdPDFinator
-          chmod 755 mdPDFinator
-
-      - name: Download sample markdown
-        run: curl ${{ vars.SAMPLE_MARKDOWN_URL }} -o sample.md
-
       - name: Add GTK
         uses: ./.github/actions
-
-      - name: Test it out
-        run: ./mdPDFinator sample.md -o output-${{ matrix.os }}.pdf
-
-      - name: Upload the converted PDF file
-        uses: actions/upload-artifact@v3
-        with:
-          name: test-output
-          path: output-${{ matrix.os }}.pdf
