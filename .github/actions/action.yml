@@ -11,7 +11,7 @@ runs:
     - name: Import GTK-for-Windows-Runtime-Environment-Installer
       uses: actions/checkout@v4
       with:
-        repository: https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer.git
+        repository: tschoonj/GTK-for-Windows-Runtime-Environment-Installer
         path: _tempGTK
         sparse-checkout: gtk-nsis-pack
     
