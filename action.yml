@@ -22,7 +22,6 @@ runs:
         THIS_OS: ${{ runner.os }}
       run: echo "::warning title=GTK for Windows::GTK for Windows is not supported on any operating systems other than Windows. You are attempting to use it on $THIS_OS."
 
-
     - name: Import GTK-for-Windows-Runtime-Environment-Installer
       uses: actions/checkout@v4
       if: runner.os == 'Windows'
