@@ -14,6 +14,7 @@ runs:
         repository: tschoonj/GTK-for-Windows-Runtime-Environment-Installer
         path: _tempGTK
         sparse-checkout: gtk-nsis-pack
+        sparse-checkout-cone-mode: false
         clean: false
     
     - name: Add to ENV
