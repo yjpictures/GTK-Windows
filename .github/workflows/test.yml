@@ -19,7 +19,7 @@ jobs:
       - name: Checkout the actions file
         uses: actions/checkout@v4
         with:
-          sparse-checkout: actions.yml
+          sparse-checkout: ./actions.yml
           sparse-checkout-cone-mode: false
 
       - run: tree /f
@@ -60,7 +60,7 @@ jobs:
       - name: Checkout the actions file
         uses: actions/checkout@v4
         with:
-          sparse-checkout: actions.yml
+          sparse-checkout: ./actions.yml
           sparse-checkout-cone-mode: false
       
       - run: ls
