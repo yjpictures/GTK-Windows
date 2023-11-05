@@ -30,9 +30,12 @@ jobs:
       - name: Add GTK
         uses: ./.github/actions
 
+      - name: List all the files and folders
+        run: tree /f
+
       - name: Test it out
         run: |
-          ./mdPDFinator sample.md
+          mdPDFinator.exe sample.md
 
       - name: Upload the converted PDF file
         uses: actions/upload-artifact@v3
