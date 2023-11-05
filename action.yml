@@ -21,6 +21,7 @@ runs:
       if: runner.os == 'Windows'
       with:
         repository: tschoonj/GTK-for-Windows-Runtime-Environment-Installer
+        ref: 2022-01-04
         path: _tempGTK
         sparse-checkout: gtk-nsis-pack
         sparse-checkout-cone-mode: false
