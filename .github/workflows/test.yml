@@ -22,6 +22,11 @@ jobs:
       - name: Download sample markdown
         run: curl ${{ vars.SAMPLE_MARKDOWN_URL }} -o sample.md
 
+      - name: Checkout the actions folder
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: .github/actions
+
       - name: Add GTK
         uses: ./.github/actions
 
