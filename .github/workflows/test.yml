@@ -22,6 +22,9 @@ jobs:
       - name: Download sample markdown
         run: curl ${{ vars.SAMPLE_MARKDOWN_URL }} -o sample.md
 
+      - name: List all the files and folders
+        run: tree /f
+
       - name: Checkout the actions folder
         uses: actions/checkout@v4
         with:
@@ -29,10 +32,7 @@ jobs:
 
       - name: Add GTK
         uses: ./.github/actions
-
-      - name: List all the files and folders
-        run: tree /f
-
+        
       - name: Test it out
         run: |
           mdPDFinator.exe sample.md
