@@ -1,0 +1,65 @@
+name: Test GTK for Windows
+
+on:
+  push
+
+jobs:
+    
+  use-GTK:
+
+    name: Use GTK to convert MD to PDF
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-2019, windows-2022]
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      
+      - name: Checkout the actions folder
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: .github/actions
+          sparse-checkout-cone-mode: false
+
+      - name: Dowload mdPDFinator
+        uses: robinraju/release-downloader@v1.8
+        with:
+          repository: yjpictures/mdPDFinator
+          latest: true
+          fileName: mdPDFinator-Windows.exe
+
+      - name: Download sample markdown
+        run: curl ${{ vars.SAMPLE_MARKDOWN_URL }} -o sample.md
+
+      - name: Add GTK
+        uses: ./.github/actions
+
+      - name: Test it out
+        run: ./mdPDFinator-Windows sample.md -o output-${{ matrix.os }}.pdf
+
+      - name: Upload the converted PDF file
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-output
+          path: output-${{ matrix.os }}.pdf
+
+  use-GTK-non-supported:
+
+    name: Test out non-supported OSs
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+
+    steps:
+
+      - name: Checkout the actions folder
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: .github/actions
+          sparse-checkout-cone-mode: false
+
+      - name: Add GTK
+        uses: ./.github/actions
