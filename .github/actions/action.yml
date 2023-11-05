@@ -11,7 +11,7 @@ runs:
     - name: Message for Non-Windows Users
       if: runner.os != 'Windows'
       shell: bash
-      run: echo "::warning title=GTK for Windows::GTK for Windows is not supported on any other OSs other than Windows"
+      run: echo "::warning title=GTK for Windows::GTK for Windows is not supported on any operating systems other than Windows. You are attempting to use it on $runner.os."
 
 
     - name: Import GTK-for-Windows-Runtime-Environment-Installer
