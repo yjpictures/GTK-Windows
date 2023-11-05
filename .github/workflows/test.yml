@@ -22,8 +22,14 @@ jobs:
           sparse-checkout: .github/actions
           sparse-checkout-cone-mode: false
 
-      - name: Download mdPDFinator
-        run: curl ${{ vars.MDPDFINATOR_RELEASE }} -o mdPDFinator.exe
+      # - name: Download mdPDFinator
+      #   run: curl ${{ vars.MDPDFINATOR_RELEASE }} -o mdPDFinator.exe
+
+      - uses: robinraju/release-downloader@v1.8
+        with:
+          repository: yjpictures/mdPDFinator
+          latest: true
+          fileName: mdPDFinator-Windows.exe
 
       - name: Download sample markdown
         run: curl ${{ vars.SAMPLE_MARKDOWN_URL }} -o sample.md
@@ -38,7 +44,7 @@ jobs:
         run: ls
 
       - name: Test it out
-        run: ./mdPDFinator sample.md
+        run: ./mdPDFinator-Windows sample.md
 
       - name: Upload the converted PDF file
         uses: actions/upload-artifact@v3
