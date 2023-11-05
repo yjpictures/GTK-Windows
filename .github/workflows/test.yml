@@ -16,24 +16,23 @@ jobs:
 
     steps:
       
-      - name: Checkout the actions folder
+      - name: Checkout the actions file
         uses: actions/checkout@v4
         with:
-          sparse-checkout: .github/actions
-          sparse-checkout-cone-mode: false
+          sparse-checkout: .
 
       - name: Dowload mdPDFinator
         uses: robinraju/release-downloader@v1.8
         with:
           repository: yjpictures/mdPDFinator
-          latest: true
+          tag: v1.1.0
           fileName: mdPDFinator-Windows.exe
 
       - name: Download sample markdown
         run: curl ${{ vars.SAMPLE_MARKDOWN_URL }} -o sample.md
 
       - name: Add GTK
-        uses: ./.github/actions
+        uses: ./
 
       - name: Test it out
         run: ./mdPDFinator-Windows sample.md -o output-${{ matrix.os }}.pdf
@@ -55,11 +54,10 @@ jobs:
 
     steps:
 
-      - name: Checkout the actions folder
+      - name: Checkout the actions file
         uses: actions/checkout@v4
         with:
-          sparse-checkout: .github/actions
-          sparse-checkout-cone-mode: false
+          sparse-checkout: .
 
       - name: Add GTK
-        uses: ./.github/actions
+        uses: ./
