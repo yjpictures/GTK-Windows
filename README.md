@@ -18,14 +18,14 @@ This GitHub Action will allow you to add GTK in the runner environment. This act
 
 ``` yaml
 - name: Add GTK to the Runner Environment
-  uses: yjpictures/GTK-Windows
+  uses: yjpictures/GTK-Windows@v1
 ```
 
 ### Use a custom release tag
 
 ``` yaml
 - name: Add GTK to the Runner Environment
-  uses: yjpictures/GTK-Windows
+  uses: yjpictures/GTK-Windows@v1
   with:
     # The release tag to use. Default is 2022-01-04.
     release: ''
