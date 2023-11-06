@@ -5,9 +5,9 @@ description: 'This will add GTK+ in Windows Runtime Environment'
 inputs:
 
   release:
-    description: The release tag to use. Default is 2022-01-04.
+    description: 'The release tag to use. Default is 2022-01-04.'
     required: true
-    default: 2022-01-04
+    default: '2022-01-04'
 
 runs:
 
@@ -15,14 +15,14 @@ runs:
 
   steps:
 
-    - name: Message for Non-Windows Users
+    - name: 'Message for Non-Windows Users'
       if: runner.os != 'Windows'
       shell: bash
       env:
         THIS_OS: ${{ runner.os }}
       run: echo "::warning title=GTK for Windows::GTK for Windows is not supported on any operating systems other than Windows. You are attempting to use it on $THIS_OS."
 
-    - name: Import GTK-for-Windows-Runtime-Environment-Installer
+    - name: 'Import GTK-for-Windows-Runtime-Environment-Installer'
       uses: actions/checkout@v4
       if: runner.os == 'Windows'
       with:
@@ -33,7 +33,7 @@ runs:
         sparse-checkout-cone-mode: false
         clean: false
     
-    - name: Add to ENV
+    - name: 'Add GTK to ENV'
       if: runner.os == 'Windows'
       shell: powershell
       run: |
