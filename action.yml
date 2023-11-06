@@ -1,6 +1,9 @@
 name: 'GTK for Windows'
 author: 'Yash Jain'
 description: 'This will add GTK+ in Windows Runtime Environment'
+branding:
+  icon: 'award'
+  color: 'green'
 
 inputs:
 
